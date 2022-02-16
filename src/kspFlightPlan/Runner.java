@@ -6,7 +6,9 @@ public class Runner {
 
 	public static void main(String[] args) {
 		
-		DVarrayObject[] outputObjects = InputManager.startVessel();
-		System.out.println(Arrays.toString(InputManager.startRoute().getPlanets()));
+		DVarrayObject[] stageDV = InputManager.startVessel();
+		int[] compressedDV = DVcompressor.compress(stageDV);
+		RouteObject route = InputManager.startRoute();
+
 	}
 }

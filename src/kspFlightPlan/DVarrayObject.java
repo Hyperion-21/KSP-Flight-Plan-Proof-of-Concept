@@ -2,16 +2,16 @@ package kspFlightPlan;
 
 public class DVarrayObject {
 
-	private int stage;
+	private int dv;
 	private int role;
 	
-	public DVarrayObject(int stage, int role) {
-		this.stage = stage;
+	public DVarrayObject(int dv, int role) {
+		this.dv = dv;
 		this.role = role;
 	}
 	
-	public int getStage() {
-		return stage;
+	public int getDV() {
+		return dv;
 	}
 	
 	public int getRole() {
