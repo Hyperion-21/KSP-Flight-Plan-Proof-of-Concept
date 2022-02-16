@@ -2,12 +2,22 @@ package kspFlightPlan;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * Handles user input to the program.
+ * @author Hyperion_21
+ */
 public class InputManager {
 	
 	private static Scanner sc = new Scanner(System.in);
 	private static int routeID = 0;
 	
+	/**
+	 * Asks for info about the craft.
+	 * @return Array of DVarrayObject
+	 */
 	public static DVarrayObject[] startVessel() {
+		
+		// Ask for dv's
 		System.out.println("Enter dv of each stage, first to last including non-engine stages (enter nothing to finish insertion or to skip this step)");
 		boolean dvAssignmentIsDone = false;
 		boolean dvAssignmentSkip = true;
@@ -27,13 +37,17 @@ public class InputManager {
 			dvAssignmentSkip = false;
 		}
 		
+		// Skip dv assignment if no dv's are inputted
 		if (dvAssignmentSkip == true) return null;
+		
+		// Ask for roles
 		System.out.println("Insert each stage's role\n"
 				+ "a - Kerbin Ascent/Orbit\n"
 				+ "i - Interplanetary transfer and capture\n"
 				+ "l - Interplanetary Landing/Ascent/Orbit\n"
 				+ "r - Return\n"
 				+ "x - Trivial (decoupler-only, heat shield, etc.)");
+		
 		for (int i = 0; i < dvArray.size(); i++) {
 			System.out.print("S" + (dvArray.size() -1 -i ) + " (" + dvArray.get(i) + "): ");
 			String tempString = sc.nextLine().toLowerCase();
@@ -47,6 +61,7 @@ public class InputManager {
 			}
 		}
 		
+		// Create returned object array
 		DVarrayObject[] objectArray = new DVarrayObject[dvArray.size()];
 		for (int i = 0; i < dvArray.size(); i++) {
 			objectArray[i] = new DVarrayObject(dvArray.get(i), dvArrayRole.get(i));
@@ -54,7 +69,14 @@ public class InputManager {
 		return objectArray;
 	}
 	
+	
+	/**
+	 * Asks for info about the route.
+	 * @return RouteObject
+	 */
 	public static RouteObject startRoute() {
+		
+		// Ask for route type for routeID
 		System.out.println("\nSelect route type:\n"
 				+ "1 - To Planet/Moon, Orbit\n"
 				+ "2 - To Planet/Moon, Land\n"
@@ -62,15 +84,20 @@ public class InputManager {
 				+ "4 - Solar Orbit\n"
 				+ "5 - Multiple Planet/Moon Orbiting Trip\n"
 				+ "6 - Multiple Planet/Moon Landing Trip\\n");
+		
 		while (true) {
 			String tempString = sc.nextLine();
 			try {
 				routeID = Integer.parseInt(tempString);
 				break;
 			} catch (Exception e) {
+				// nop
 			}
 		}
-		System.out.println("Return to Kerbin? (y/n)");
+		
+		// Ask for return
+		System.out.println("\nReturn to Kerbin? (y/n)");
+
 		while (true) {
 			String tempString;
 			tempString = sc.nextLine().toLowerCase();
@@ -83,14 +110,23 @@ public class InputManager {
 			}
 			break;
 		}
+		
+		// Returns with different handlers depending on what type of route was selected
 		if (routeID % 6 == 1 || routeID % 6 == 2) return planetHandler();
 		if (routeID % 6 == 3 || routeID % 6 == 4) return altitudeHandler();
 		return tourHandler();
 	}
 	
+	/**
+	 * Handles going to a singular body
+	 * @return RouteObject
+	 */
 	private static RouteObject planetHandler() {
+		
+		// Ask for target
 		System.out.println("\nWhere is your destination? DO NOT include host planet if moon");
 		String[] planets = new String[1];
+
 		while (true) {
 			String tempString = sc.nextLine().toLowerCase();
 			switch (tempString) {
@@ -113,12 +149,21 @@ public class InputManager {
 			}
 			break;
 		}
+		
+		// return with placeholder altitude value
 		return new RouteObject(routeID, planets, 0);
 	}
 	
+	/**
+	 * Handles Kerbin or solar orbits
+	 * @return RouteObject
+	 */
 	private static RouteObject altitudeHandler() {
+		
+		// Ask for target altitude
 		System.out.println("\nAltitude?");
 		int altitude;
+		
 		while (true) {
 			String tempString = sc.nextLine();
 			try {
@@ -128,13 +173,24 @@ public class InputManager {
 			}
 			break;
 		}
+		
+		// Assigns planets[] based on routeID
 		String[] planets = new String[1];
-		if (routeID % 6 == 3) {planets[0] = "kerbin";}
-		else {planets[0] = "sun";}
+		if (routeID % 6 == 3) {
+			planets[0] = "kerbin";
+		} else {
+			planets[0] = "sun";
+		}
 		return new RouteObject(routeID, planets, altitude);
 	}
 	
+	/**
+	 * Handles going to multiple bodies
+	 * @return
+	 */
 	private static RouteObject tourHandler() {
+		
+		// Ask for targets
 		System.out.println("\nList target planets in order. Enter nothing to go finish.");
 		String[] planets = new String[256];
 		int i = 0;
@@ -163,6 +219,8 @@ public class InputManager {
 			}
 			i++;
 		}
+		
+		// Return with placeholder altitude
 		return new RouteObject(routeID, planets, 0);
 	}
 }
