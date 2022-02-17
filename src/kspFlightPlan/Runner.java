@@ -1,6 +1,7 @@
 package kspFlightPlan;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * Main class
@@ -9,7 +10,12 @@ import java.util.Arrays;
  */
 public class Runner {
 
+	private static HashMap<String, Integer[]> dvMap = new HashMap<String, Integer[]>();
+	
 	public static void main(String[] args) {
+		
+		// Initialize dvMap
+		MapMaker.start(dvMap);
 		
 		// Run InputManager
 		DVarrayObject[] stageDV = InputManager.startVessel();
