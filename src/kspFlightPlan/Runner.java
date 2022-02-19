@@ -22,5 +22,6 @@ public class Runner {
 		int[] compressedDV = DVcompressor.compress(stageDV);
 		RouteObject route = InputManager.startRoute();
 
+		if (route.getRouteID() % 6 == 1) OutputManager.soloOrbit(compressedDV, route, dvMap);
 	}
 }
