@@ -80,10 +80,10 @@ public class InputManager {
 		System.out.println("\nSelect route type:\n"
 				+ "1 - To Planet/Moon, Orbit\n"
 				+ "2 - To Planet/Moon, Land\n"
-				+ "3 - Orbit Kerbin\n"
-				+ "4 - Solar Orbit\n"
-				+ "5 - Multiple Planet/Moon Orbiting Trip\n"
-				+ "6 - Multiple Planet/Moon Landing Trip\\n");
+				+ "3 - Orbit Kerbin (WIP)\n"
+				+ "4 - Solar Orbit (WIP)\n"
+				+ "5 - Multiple Planet/Moon Orbiting Trip (WIP)\n"
+				+ "6 - Multiple Planet/Moon Landing Trip (WIP)\n");
 		
 		while (true) {
 			String tempString = sc.nextLine();
