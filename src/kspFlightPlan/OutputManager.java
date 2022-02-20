@@ -25,9 +25,9 @@ public class OutputManager {
 					+ format.format(tempDouble) + "% of Minimum (" + dv[0] + "/3400)\n"
 					+ "Extra fuel recommended!");
 		} else {
-			System.err.println("BAD!\n"
+			System.out.println("BAD!\n"
 					+ format.format(tempDouble) + "% of Minimum (" + dv[0] + "/3400)\n"
-					+ "Not enought fuel! Cannot safely get to orbit!");
+					+ "Not enough fuel! Cannot safely get to orbit!");
 		}
 		
 		System.out.print("\nTransfer: ");
@@ -46,9 +46,9 @@ public class OutputManager {
 					+ format.format(tempDouble) + "% of Minimum (" + dv[1] + "/" + tempInt + ")\n"
 					+ "Extra fuel recommended!");
 		} else {
-			System.err.println("BAD!\n"
+			System.out.println("BAD!\n"
 					+ format.format(tempDouble) + "% of Minimum (" + dv[1] + "/" + tempInt + ")\n"
-					+ "Not enought fuel! Cannot safely transfer to " + planet.substring(0, 1).toUpperCase() + planet.substring(1) + "! Gravity assists / aerocapturing may be required!");
+					+ "Not enough fuel! Cannot safely transfer to " + planet.substring(0, 1).toUpperCase() + planet.substring(1) + "! Gravity assists / aerocapturing may be required!");
 		}
 		
 		if (routeID % 6 == 2) {
@@ -68,9 +68,9 @@ public class OutputManager {
 						+ format.format(tempDouble) + "% of Minimum (" + dv[2] + "/" + tempInt + ")\n"
 						+ "Extra fuel recommended!");
 			} else {
-				System.err.println("BAD!\n"
+				System.out.println("BAD!\n"
 						+ format.format(tempDouble) + "% of Minimum (" + dv[2] + "/" + tempInt + ")\n"
-						+ "Not enought fuel! Cannot safely get to orbit!");
+						+ "Not enough fuel! Cannot safely get to orbit!");
 			}
 		}
 		
@@ -96,9 +96,9 @@ public class OutputManager {
 						+ format.format(tempDouble) + "% of Minimum (" + dv[3] + "/" + tempInt + ")\n"
 						+ "Extra fuel recommended!");
 			} else {
-				System.err.println("BAD!\n"
+				System.out.println("BAD!\n"
 						+ format.format(tempDouble) + "% of Minimum (" + dv[3] + "/" + tempInt + ")\n"
-						+ "Not enought fuel! Cannot safely get home! Gravity assists / aerocapturing may be required!");
+						+ "Not enough fuel! Cannot safely get home! Gravity assists / aerocapturing may be required!");
 			}
 		}
 	}
